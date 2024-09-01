@@ -1,0 +1,26 @@
+[paths]
+encoded_data = "data/data_encoded.parquet"
+raw_data = "data/term-deposit-marketing-2020.csv"
+output_dir = "data/"
+
+[settings.H2O]
+project_name = "term_deposit_prediction"
+max_models = 20
+stopping_metric = "AUC"
+export_checkpoints_dir = "/path/to/export/checkpoints"
+nfolds = 5
+max_runtime_secs = 5000
+seed = 42
+verbosity = "warn"
+# balance_classes = true
+
+
+[settings.TPOT]
+exported_pipeline = "tpot_term_deposit_pipeline.py"
+
+[database]
+host = 'localhost'
+port = 5432
+user = 'your_username'
+password = 'your_password'
+database_name = 'your_database'

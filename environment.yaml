@@ -1,0 +1,33 @@
+name: term_deposit
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pandas
+  - numpy==1.26.4
+  - matplotlib
+  - seaborn
+  - statsmodels
+  - scikit-learn
+  - dowhy
+  - tabulate
+  - pygraphviz
+  - imbalanced-learn
+  - fastparquet
+  # - scipy
+  # - joblib
+  # - pytorch
+  - tpot
+  - h2oai
+  - pip:
+    - causalinference
+    - causalml
+    - graphviz
+    - causalnex
+    - causal-learn
+    - econml
+    - pycaret
+    - mlflow
+    - hyperopt
+    - h2o
+    # - nni
