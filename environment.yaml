@@ -19,6 +19,7 @@ dependencies:
   # - pytorch
   - tpot
   - h2oai
+  - dask
   - pip:
     - causalinference
     - causalml
