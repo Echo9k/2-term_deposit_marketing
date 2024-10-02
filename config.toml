@@ -1,7 +1,29 @@
+[settings.general]
+seed = 42
+
 [paths]
-encoded_data = "data/data_encoded.parquet"
-raw_data = "data/term-deposit-marketing-2020.csv"
-output_dir = "data/"
+output_dir = "/data/"
+models = "/models/"
+
+[path.mlflow]
+tracking_uri = "../mlruns/pre/"
+
+[paths.data]
+encoded_data = "/data/data_encoded.parquet"
+raw_data = "/data/term-deposit-marketing-2020.csv"
+pre= "/data/data_precall_encoded.parquet"
+post= "/data/data_postcall_encoded.parquet"
+
+[paths.TPOT]
+periodic_checkpoint_folder = "../models/tpot/pre/checkpoints/"
+base = "../models/tpot/pre/"
+
+[database]
+host = 'localhost'
+port = 5432
+user = 'your_username'
+password = 'your_password'
+database_name = 'your_database'
 
 [settings.H2O]
 project_name = "term_deposit_prediction"
@@ -14,13 +36,21 @@ seed = 42
 verbosity = "warn"
 # balance_classes = true
 
+# TPOT Classifier Configuration
+[TPOT.one]
+generations = 5
+population_size = 20
+verbosity = 0
+use_dask = false
+cv = 5
+random_state = 42
+scoring = "precision"
 
-[settings.TPOT]
-exported_pipeline = "tpot_term_deposit_pipeline.py"
-
-[database]
-host = 'localhost'
-port = 5432
-user = 'your_username'
-password = 'your_password'
-database_name = 'your_database'
+[TPOT.two]
+generations = 1
+population_size = 50
+verbosity = 2
+use_dask = false
+cv = 5
+random_state = 42
+scoring = "precision"

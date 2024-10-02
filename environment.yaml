@@ -14,11 +14,11 @@ dependencies:
   - pygraphviz
   - imbalanced-learn
   - fastparquet
+  - tpot
   # - scipy
   # - joblib
   # - pytorch
-  - tpot
-  - h2oai
+  # - h2oai
   - dask
   - pip:
     - causalinference
@@ -31,4 +31,5 @@ dependencies:
     - mlflow
     - hyperopt
     - h2o
+    - dask-ml[xgboost]
     # - nni
