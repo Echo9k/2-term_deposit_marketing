@@ -6,3 +6,7 @@ supporting_files/
 models/mlruns/0/015e95559f9946659ee0315daddff890/artifacts/model/
 
 *.log
+
+term_deposit/__pycache__/
+
+term-deposit/__pycache__/

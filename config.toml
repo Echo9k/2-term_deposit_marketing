@@ -11,6 +11,7 @@ tracking_uri = "../mlruns/pre/"
 [paths.data]
 encoded_data = "/data/data_encoded.parquet"
 raw_data = "/data/term-deposit-marketing-2020.csv"
+raw_pdata = "/data/term_deposit-policy.parquet"
 pre= "/data/data_precall_encoded.parquet"
 post= "/data/data_postcall_encoded.parquet"
 
@@ -54,3 +55,13 @@ use_dask = false
 cv = 5
 random_state = 42
 scoring = "precision"
+
+[automl]
+task = "regression"
+log_file_name = "../models/flaml/logs.log"
+n_jobs = -1
+estimator_list = "auto"
+time_budget = 600
+max_iter = 1000000
+sample = true
+ensemble = false

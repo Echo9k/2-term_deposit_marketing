@@ -32,4 +32,7 @@ dependencies:
     - hyperopt
     - h2o
     - dask-ml[xgboost]
+    - flaml[ray,blendsearch]
+    - flaml[automl]
+    - optuna
     # - nni
