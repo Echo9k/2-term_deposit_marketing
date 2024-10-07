@@ -13,7 +13,8 @@ encoded_data = "/data/data_encoded.parquet"
 raw_data = "/data/term-deposit-marketing-2020.csv"
 raw_pdata = "/data/term_deposit-policy.parquet"
 pre= "/data/data_precall_encoded.parquet"
-post= "/data/data_postcall_encoded.parquet"
+post= "data/data_postcall_encoded.parquet"
+
 
 [paths.TPOT]
 periodic_checkpoint_folder = "../models/tpot/pre/checkpoints/"

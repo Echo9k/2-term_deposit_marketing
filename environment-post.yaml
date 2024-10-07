@@ -1,0 +1,21 @@
+name: term_deposit-post
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pandas
+  - numpy
+  - matplotlib
+  - seaborn
+  - statsmodels
+  - scikit-learn
+  - tabulate
+  - fastparquet
+  - tpot
+  - dask
+  - pip
+  - toml
+  - pip:
+      - pycaret
+      - mlflow
+      - h2o

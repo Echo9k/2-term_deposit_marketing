@@ -1,6 +1,7 @@
 import numpy as np
 import plotly.express as px
 
+
 def plot_true_vs_predicted(y_test, y_predict, title="True vs Predicted"):
     """
     Plots the relationship between true and predicted values, showing prediction error,
