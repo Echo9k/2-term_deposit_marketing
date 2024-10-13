@@ -9,16 +9,20 @@ models = "/models/"
 tracking_uri = "../mlruns/pre/"
 
 [paths.data]
-encoded_data = "/data/data_encoded.parquet"
-raw_data = "/data/term-deposit-marketing-2020.csv"
-raw_pdata = "/data/term_deposit-policy.parquet"
-pre= "/data/data_precall_encoded.parquet"
-post= "data/data_postcall_encoded.parquet"
+encoded_data = "data/interim/data_encoded.parquet"
+raw = "data/raw/term-deposit-marketing-2020.csv"
+raw_pdata = "data/raw/term_deposit-policy.parquet"
+pre = "data/processed/data_precall_encoded.parquet"
+post = "data/processed/data_postcall_encoded.parquet"
 
 
-[paths.TPOT]
-periodic_checkpoint_folder = "../models/tpot/pre/checkpoints/"
+[paths.pre.TPOT]
+periodic_checkpoint_folder = "models/tpot/pre/checkpoints/"
 base = "../models/tpot/pre/"
+
+[paths.post.TPOT]
+periodic_checkpoint_folder = "models/tpot/post/checkpoints/"
+base = "../models/tpot/post/"
 
 [database]
 host = 'localhost'
@@ -27,11 +31,18 @@ user = 'your_username'
 password = 'your_password'
 database_name = 'your_database'
 
+[pycaret.setup]
+use_gpu=false
+session_id=123
+log_experiment=false
+experiment_name="predict-term_deposit-marketing-2020"
+fix_imbalance_method="smote_tomek"
+
 [settings.H2O]
 project_name = "term_deposit_prediction"
 max_models = 20
-stopping_metric = "AUC"
-export_checkpoints_dir = "/path/to/export/checkpoints"
+stopping_metric = "logloss"
+export_checkpoints_dir = "models/H2O/checkpoints"
 nfolds = 5
 max_runtime_secs = 5000
 seed = 42

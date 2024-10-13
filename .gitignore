@@ -1,12 +1,6 @@
-
 dag_visualization.pdf
-
 supporting_files/
-
-models/mlruns/0/015e95559f9946659ee0315daddff890/artifacts/model/
-
+models/
 *.log
-
 term_deposit/__pycache__/
-
-term-deposit/__pycache__/
+mlruns/
