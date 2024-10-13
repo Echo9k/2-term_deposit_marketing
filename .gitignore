@@ -4,3 +4,4 @@ models/
 *.log
 term_deposit/__pycache__/
 mlruns/
+.jython_cache/packages/
