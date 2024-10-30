@@ -1,6 +1,11 @@
 [settings.general]
 seed = 42
 
+[data.separation]
+target = "y"
+numerical_features = ['age', 'balance', 'duration', 'campaign']
+categorical_features = ['job', 'marital', 'education', 'default', 'housing', 'loan', 'contact']
+
 [paths]
 output_dir = "/data/"
 models = "/models/"

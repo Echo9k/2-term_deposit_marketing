@@ -2,9 +2,9 @@ name: term_deposit-causal
 channels:
   - conda-forge
 dependencies:
-  - python=3.11
-  - pandas
-  - numpy
+  - python=3.10
+  - pandas>=2.0
+  - numpy>=2.0
   - matplotlib
   - seaborn
   - statsmodels
@@ -14,7 +14,7 @@ dependencies:
   - imbalanced-learn
   - fastparquet
   - tpot
-  - dask
+  - ipykernel
   - pip:
     - causalinference
     - causalml
