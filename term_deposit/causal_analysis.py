@@ -1,8 +1,6 @@
-from causalinference import CausalModel
-from dowhy import CausalModel
-
-
 def causalinference_analysis(df, treatment, outcome, confounders):
+    from causalinference import CausalModel
+
     X = df[confounders].values  # Confounders
     D = df[treatment].values  # Treatment (high_balance)
     Y = df[outcome].values  # Outcome (term deposit subscription)
@@ -26,6 +24,7 @@ def causalinference_analysis(df, treatment, outcome, confounders):
 
 
 def dowhy_analysis(df, treatment, outcome, confounders):
+    from dowhy import CausalModel
     model = CausalModel(
         data=df,
         treatment=treatment,
