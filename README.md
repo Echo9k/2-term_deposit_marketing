@@ -1,45 +1,124 @@
-# **Term Deposit Marketing Campaign Analysis**
+# Term Deposit Marketing Campaign Analysis
+
+This project develops a machine learning system to improve the effectiveness of a bank's marketing campaign by predicting the likelihood of customer subscription to term deposits. We explore various libraries and modeling approaches to identify customers most likely to subscribe, helping the bank optimize its marketing strategy.
+
+---
+
+## **Table of Contents**
+- [Project Overview](#project-overview)
+- [Key Components](#key-components)
+- [Environment Setup](#environment-setup)
+- [Running the Project](#running-the-project)
+- [Results](#results)
+- [Documentation Links](#documentation-links)
+
+---
 
 ## **Project Overview**
 
-This project aims to develop a sophisticated machine learning system that analyzes call center data to enhance the success rate of marketing campaigns. Specifically, we are focused on increasing the likelihood of customer subscriptions to financial products, such as term deposits, offered by our clients. The ultimate goal is to create an adaptive, interpretable model that not only achieves high predictive accuracy but also provides actionable insights for our clients to optimize their marketing strategies.
+The goal of this project is to build an adaptive, interpretable model that can analyze call center data and provide insights to enhance the success rate of a term deposit marketing campaign. We approach the project in multiple stages, from exploratory analysis and causal inference to pre- and post-call classification modeling and customer segmentation.
 
-## **Data Source**
+**Key Objectives:**
+- **Primary Goal**: Accurately predict term deposit subscriptions, prioritizing recall for class 1 (subscribers).
+- **Secondary Goals**:
+    - Understand feature importance and causal relationships between variables.
+    - Develop pre- and post-call classification models to optimize marketing efforts.
+    - Segment customers for targeted marketing strategies.
 
-The dataset originates from the direct marketing efforts of a European banking institution. The marketing campaign involves multiple phone calls made to customers to promote a term deposit product. Term deposits are short-term financial instruments with fixed maturity dates, typically ranging from one month to a few years. It is crucial for customers to understand that funds deposited in a term deposit cannot be withdrawn until the maturity date. To protect customer privacy, all personally identifiable information has been anonymized.
+---
 
-### **Data Attributes**
+## **Key Components**
 
-The dataset includes the following attributes:
+### **1. Exploratory Data Analysis (EDA)**
+Initial data exploration and visualization to understand feature distributions and detect patterns.
 
-- **Age**: Customer's age (numeric)
-- **Job**: Type of job (categorical)
-- **Marital Status**: Marital status of the customer (categorical)
-- **Education**: Level of education (categorical)
-- **Default**: Indicates if the customer has credit in default (binary)
-- **Balance**: Average yearly balance in euros (numeric)
-- **Housing Loan**: Indicates if the customer has a housing loan (binary)
-- **Personal Loan**: Indicates if the customer has a personal loan (binary)
-- **Contact Type**: Type of communication used to contact the customer (categorical)
-- **Last Contact Day**: Day of the last contact within the month (numeric)
-- **Last Contact Month**: Month of the last contact within the year (categorical)
-- **Duration**: Duration of the last contact in seconds (numeric)
-- **Campaign Contacts**: Number of contacts made during this campaign, including the last contact (numeric)
+### **2. Call Prediction Modeling**
+Predict the number of calls required for a customer to subscribe, using regression to explore feature engineering options.
 
-### **Target Variable**
+### **3. Causal Analysis**
+Identify interrelationships between variables using causal inference techniques to understand factors influencing subscriptions.
 
-- **Subscription (y)**: Indicates whether the customer subscribed to a term deposit (binary: yes/no)
+### **4. Pre-Call Modeling**
+Classification model to prioritize customers before contact, helping to optimize marketing efforts.
 
-## **Project Goals**
+### **5. Post-Call Prediction**
+Classification model that uses additional customer information gathered post-contact to refine subscription likelihood predictions.
 
-The primary objective is to accurately predict whether a customer will subscribe to a term deposit based on the provided attributes.
+### **6. Customer Segmentation**
+Clustering analysis to identify distinct customer groups for targeted marketing strategies.
 
-### **Performance Metrics**
+---
 
-The success of the model will be evaluated based on its accuracy. Our target is to achieve an accuracy rate of 81% or higher, validated through 5-fold cross-validation, with the final performance score reported as the average across all folds.
+## **Environment Setup**
 
-## **Additional Objectives**
+To avoid dependency conflicts, we use separate Conda environments for different stages of the project. The required environments and their corresponding files are:
 
-- **Customer Segmentation**: Identify and prioritize customer segments that are more likely to subscribe to the term deposit.
-  
-- **Feature Importance**: Determine which features most significantly influence a customer's decision to subscribe, enabling our clients to focus their marketing efforts more effectively.
+- **Pre-Call Modeling**: `environment-pre.yaml`
+- **Post-Call Modeling**: `environment-post.yaml`
+- **Causal Analysis**: `environment-causal.yaml`
+- **Clustering**: `environment-cluster.yaml`
+
+### **Setting Up an Environment**
+
+1. **Create the environment**:
+   ```bash
+   conda env create -f <environment-file>.yaml
+   ```
+   Replace `<environment-file>` with the appropriate environment file (e.g., `environment-pre.yaml`).
+
+2. **Activate the environment**:
+   ```bash
+   conda activate <environment-name>
+   ```
+
+3. **Add Jupyter Kernel for Each Environment** (optional):
+   ```bash
+   python -m ipykernel install --user --name=<environment-name>
+   ```
+
+---
+
+## **Running the Project**
+
+1. **Clone the Repository**:
+   ```bash
+   git clone <repository-url>
+   cd <repository-name>
+   ```
+
+2. **Data Preparation**: Ensure that raw data files are placed in the `data/raw/` directory. Interim and processed data will be generated in the `data/interim/` and `data/processed/` folders as you progress.
+
+3. **Run Notebooks**:
+   Open Jupyter Notebook or JupyterLab and select the corresponding environment kernel for each notebook.
+
+4. **Track Experiments**: MLflow and other tracking tools are used to log experiments. Check the `mlruns/` folder for details.
+
+---
+
+## **Results**
+
+Results are provided for each analysis stage, including key insights and performance metrics. For a detailed breakdown, see the [Results Documentation](results.md).
+
+### **Summary of Key Results**:
+- **EDA**: Initial insights on feature distributions and customer demographics.
+- **Call Prediction**: Metrics on the regression model predicting the number of calls.
+- **Causal Analysis**: Identified causal relationships that impact customer subscriptions.
+- **Pre-Call Model**: Precision-focused model for prioritizing likely subscribers.
+- **Post-Call Model**: Improved recall for subscribers after gathering additional customer information.
+- **Clustering**: Segmentation of customer groups for tailored marketing strategies.
+
+---
+
+## **Documentation Links**
+
+- [Starter Guide](starter.md): Quick-start setup and project structure.
+- [Project Overview](overview.md): Detailed goals, data, and metric explanations.
+- [Results Documentation](results.md): Comprehensive results for each analysis phase.
+
+For further technical details, see the [Appendix](appendix.md) for troubleshooting, parameter settings, and advanced configurations.
+
+---
+
+## **Contributing**
+
+For questions or suggestions, please reach out to [project-support@example.com](mailto:project-support@example.com). Contributions are welcome via pull requests.
