@@ -8,5 +8,7 @@
     <toc-element topic="Instructions.md"/>
     <toc-element topic="Starter.md"/>
     <toc-element topic="Overview.md"/>
-    <toc-element topic="Results.md"/>
+    <toc-element topic="Results.md">
+        <toc-element topic="Regression-OLS.md"/>
+    </toc-element>
 </instance-profile>

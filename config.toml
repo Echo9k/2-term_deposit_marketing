@@ -23,11 +23,11 @@ post = "data/processed/data_postcall_encoded.parquet"
 
 [paths.pre.TPOT]
 periodic_checkpoint_folder = "models/tpot/pre/checkpoints/"
-base = "../models/tpot/pre/"
+base = "models/tpot/pre/"
 
 [paths.post.TPOT]
 periodic_checkpoint_folder = "models/tpot/post/checkpoints/"
-base = "../models/tpot/post/"
+base = "models/tpot/post/"
 
 [database]
 host = 'localhost'
@@ -75,7 +75,7 @@ scoring = "precision"
 
 [automl]
 task = "regression"
-log_file_name = "../models/flaml/logs.log"
+log_file_name = "models/flaml/logs.log"
 n_jobs = -1
 estimator_list = "auto"
 time_budget = 600
