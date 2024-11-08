@@ -64,3 +64,9 @@ def sensitivity_analysis(df, model, treatment, outcome, confounders):
         method_name="add_unobserved_common_cause"
     )
     print(f"Sensitivity Analysis Result for {treatment}:\n{sensitivity}")
+
+def create_interaction_terms(data, interactions):
+    for interaction in interactions:
+        term1, term2 = interaction.split('*')
+        data[f'{term1}_{term2}'] = data[term1] * data[term2]
+    return data
