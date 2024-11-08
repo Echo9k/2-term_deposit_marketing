@@ -6,8 +6,13 @@
                  name="Instance Name" start-page="Instructions.md">
 
     <toc-element topic="Instructions.md"/>
+    <toc-element topic="Apendix.md">
+        <toc-element topic="Model-Summary.md"/>
+        <toc-element topic="Data-Dictionary.md"/>
+    </toc-element>
     <toc-element topic="Starter.md"/>
     <toc-element topic="Overview.md"/>
+    <toc-element topic="Business-report.md"/>
     <toc-element topic="Results.md">
         <toc-element topic="Regression-OLS.md"/>
     </toc-element>

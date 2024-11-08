@@ -1,4 +1,4 @@
-# Results
+# Practical implications
 
 This section outlines the results of each stage in the Term Deposit Marketing Campaign Analysis, including the baseline subscription rate, pre-call model performance, and post-call model refinement.
 
