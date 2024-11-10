@@ -16,4 +16,5 @@
     <toc-element topic="Results.md">
         <toc-element topic="Regression-OLS.md"/>
     </toc-element>
+    <toc-element topic="Suggestions.md"/>
 </instance-profile>
