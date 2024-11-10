@@ -10,9 +10,14 @@ import toml
 
 
 from sklearn.pipeline import Pipeline
+from hyperopt import STATUS_OK
 from sklearn.impute import KNNImputer, SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
+
+import mlflow
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import precision_score, recall_score, f1_score, average_precision_score, classification_report, confusion_matrix
 
 # %% Configuration Handling
 def load_config(config_path='config.toml'):
@@ -97,8 +102,13 @@ def log_results(y_test, y_pred, model, params):
     mlflow.sklearn.log_model(model, "model")
 
 # Define the objective function
+from hyperopt import STATUS_OK
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import precision_score
+import mlflow
+
 def objective(params):
-    with mlflow.start_run(nested=True):  # Create a new nested run for each evaluation
+    with mlflow.start_run(nested=True):  # Nested run for each evaluation
         # Extract hyperparameters
         n_estimators = int(params['n_estimators'])
         max_depth = int(params['max_depth'])
@@ -115,9 +125,11 @@ def objective(params):
 
         # Make predictions and calculate metrics
         y_pred = model.predict(X_test)
-        precision = precision_score(y_test, y_pred)
+        precision = precision_score(y_test, y_pred, average='binary')  # Adjust if multi-class
 
-        # Log results to MLflow
+        # Log hyperparameters and results to MLflow
+        mlflow.log_params(params)
+        mlflow.log_metric("precision", precision)
         log_results(y_test, y_pred, model, params)
 
         # Return a dictionary with status and loss (to minimize)
