@@ -7,11 +7,11 @@ numerical_features = ['age', 'balance', 'duration', 'campaign']
 categorical_features = ['job', 'marital', 'education', 'default', 'housing', 'loan', 'contact']
 
 [paths]
-output_dir = "/data/"
-models = "/models/"
+output_dir = "data/"
+models = "models/"
 
-[path.mlflow]
-tracking_uri = "../mlruns/pre/"
+[mlflow]
+tracking_uri = "mlruns/pre/"
 
 [paths.data]
 encoded_data = "data/interim/data_encoded.parquet"
