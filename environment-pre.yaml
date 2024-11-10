@@ -15,6 +15,7 @@ dependencies:
   - imbalanced-learn
   - fastparquet
   - tpot
+  - toml
   # - scipy
   # - joblib
   # - pytorch
