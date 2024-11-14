@@ -8,15 +8,17 @@ categorical_features = ['job', 'marital', 'education', 'default', 'housing', 'lo
 
 [paths]
 output_dir = "data/"
-models = "models/"
-
-[mlflow]
-tracking_uri = "mlruns/pre/"
+tracking_uri = "mlruns/"
+model_base = "models/"
+model_pre = "models/pre/"
+model_post = "models/post/"
 
 [paths.data]
+base = 'data/'
 encoded_data = "data/interim/data_encoded.parquet"
 raw = "data/raw/term-deposit-marketing-2020.csv"
-raw_pdata = "data/raw/term_deposit-policy.parquet"
+raw_p = "data/raw/term_deposit-policy.parquet"
+interim = "data/interim"
 pre = "data/processed/data_precall_encoded.parquet"
 post = "data/processed/data_postcall_encoded.parquet"
 

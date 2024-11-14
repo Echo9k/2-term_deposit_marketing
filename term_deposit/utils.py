@@ -3,11 +3,7 @@ import numpy as np
 import pandas as pd
 
 # File & System Operations
-import pathlib
-import os
-import sys
 import toml
-
 
 from sklearn.pipeline import Pipeline
 from hyperopt import STATUS_OK
@@ -18,6 +14,11 @@ from sklearn.compose import ColumnTransformer
 import mlflow
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import precision_score, recall_score, f1_score, average_precision_score, classification_report, confusion_matrix
+
+# Define the objective function
+from hyperopt import STATUS_OK
+
+
 
 # %% Configuration Handling
 def load_config(config_path='config.toml'):
@@ -101,13 +102,8 @@ def log_results(y_test, y_pred, model, params):
     # Log the model
     mlflow.sklearn.log_model(model, "model")
 
-# Define the objective function
-from hyperopt import STATUS_OK
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import precision_score
-import mlflow
-
-def objective(params):
+# Updated objective function to accept additional arguments
+def objective(params, X_train, X_test, y_train, y_test, average='binary'):
     with mlflow.start_run(nested=True):  # Nested run for each evaluation
         # Extract hyperparameters
         n_estimators = int(params['n_estimators'])
@@ -125,12 +121,19 @@ def objective(params):
 
         # Make predictions and calculate metrics
         y_pred = model.predict(X_test)
-        precision = precision_score(y_test, y_pred, average='binary')  # Adjust if multi-class
+        precision = precision_score(y_test, y_pred, average=average)  # Adjust if multi-class
 
         # Log hyperparameters and results to MLflow
         mlflow.log_params(params)
         mlflow.log_metric("precision", precision)
-        log_results(y_test, y_pred, model, params)
+        # log_results(y_test, y_pred, model, params)
 
         # Return a dictionary with status and loss (to minimize)
         return {'loss': -precision, 'status': STATUS_OK}
+
+def get_best_model(trials):
+    # Retrieve the best trial
+    best_trial = trials.best_trial
+    # Extract the trained model from the best trial's result
+    best_model = best_trial['result']['model']
+    return best_model

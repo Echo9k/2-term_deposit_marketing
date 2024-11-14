@@ -1,5 +1,6 @@
 import numpy as np
 import plotly.express as px
+from flaml import AutoML
 
 
 def plot_true_vs_predicted(y_test, y_predict, title="True vs Predicted"):
@@ -67,35 +68,46 @@ def plot_true_vs_predicted(y_test, y_predict, title="True vs Predicted"):
 
 
 
-# def train_model(X_train, y_train, metric="mae", **kwargs):
-#     """
-#     Trains an AutoML model on the given data.
-#     """
-#     # Train with labeled input data
-#     automl.fit(X_train=X_train, y_train=y_train, metric=metric, **kwargs)
+def train_model(X_train, y_train, metric="mae", **kwargs):
+    """
+    Trains an AutoML model on the given data.
+    """
+    # Train with labeled input data
+    automl.fit(X_train=X_train, y_train=y_train, metric=metric, **kwargs)
 
-#     # Print the best model
-#     print(automl.model.estimator)
+    # Print the best model
+    print(automl.model.estimator)
 
-#     # Save the model    
-#     # automl.model.save("../models/flaml/model.pkl")
+    # Save the model    
+    # automl.model.save("../models/flaml/model.pkl")
 
-#     # Assume you have trained a model and are testing it
-#     # automl.predict(X_test)
+    # Assume you have trained a model and are testing it
+    # automl.predict(X_test)
 
-#     return automl
+    return automl
 
-# def train_model(X_train, y_train, metric="r2", **kwargs): 
-#     """
-#     Trains an AutoML model on the given data and logs the run in MLflow.
-#     """
-#     automl = AutoML()  # Initialize the AutoML object within the task
-#     automl.fit(X_train=X_train, y_train=y_train, metric=metric, **kwargs)
+def train_model(X_train, y_train, metric="r2", **kwargs): 
+    """
+    Trains an AutoML model on the given data and logs the run in MLflow.
+    """
+    automl = AutoML()  # Initialize the AutoML object within the task
+    automl.fit(X_train=X_train, y_train=y_train, metric=metric, **kwargs)
 
-#     # Return relevant model info without logging here to avoid MLflow-related issues in Ray
-#     return {
-#         "metric": metric,
-#         "best_estimator": automl.best_estimator,
-#         "best_config": automl.best_config,
-#         "best_loss": automl.best_loss
-#     }
+    # Return relevant model info without logging here to avoid MLflow-related issues in Ray
+    return {
+        "metric": metric,
+        "best_estimator": automl.best_estimator,
+        "best_config": automl.best_config,
+        "best_loss": automl.best_loss
+    }
+
+
+def custom_scoring_metric(real_value, predicted_value):
+    if real_value - 2 <= predicted_value:
+        return 0.6
+    elif predicted_value > real_value + 2:
+        return 1
+    else:
+        return 0
+
+vectorized_scoring_metric = np.vectorize(custom_scoring_metric)
