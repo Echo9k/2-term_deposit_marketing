@@ -1,0 +1,24 @@
+name: term_deposit-causal
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pandas>=2.0
+  - numpy>=2.0
+  - matplotlib
+  - seaborn
+  - statsmodels
+  - dowhy
+  - tabulate
+  - pygraphviz
+  - imbalanced-learn
+  - fastparquet
+  - tpot
+  - ipykernel
+  - pip:
+    - causalinference
+    - causalml
+    - graphviz
+    - causalnex
+    - causal-learn
+    - econml

@@ -1,0 +1,21 @@
+name: term_deposit-cluster
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pandas>=2.0
+  - numpy>=2.0
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - tabulate
+  - fastparquet
+  - tpot
+  - toml
+  - umap-learn
+  - pip
+  - pip:
+    - umap-learn
+    - clustpy[full]
+    - nbformat>=4.2.0
+    - kneed

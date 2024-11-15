@@ -1,22 +1,35 @@
-[paths]
-encoded_data = "data/data_encoded.parquet"
-raw_data = "data/term-deposit-marketing-2020.csv"
-output_dir = "data/"
-
-[settings.H2O]
-project_name = "term_deposit_prediction"
-max_models = 20
-stopping_metric = "AUC"
-export_checkpoints_dir = "/path/to/export/checkpoints"
-nfolds = 5
-max_runtime_secs = 5000
+[settings.general]
 seed = 42
-verbosity = "warn"
-# balance_classes = true
+
+[data.separation]
+target = "y"
+numerical_features = ['age', 'balance', 'duration', 'campaign']
+categorical_features = ['job', 'marital', 'education', 'default', 'housing', 'loan', 'contact']
+
+[paths]
+output_dir = "data/"
+tracking_uri = "mlruns/"
+model_base = "models/"
+model_pre = "models/pre/"
+model_post = "models/post/"
+
+[paths.data]
+base = 'data/'
+encoded_data = "data/interim/data_encoded.parquet"
+raw = "data/raw/term-deposit-marketing-2020.csv"
+raw_p = "data/raw/term_deposit-policy.parquet"
+interim = "data/interim"
+pre = "data/processed/data_precall_encoded.parquet"
+post = "data/processed/data_postcall_encoded.parquet"
 
 
-[settings.TPOT]
-exported_pipeline = "tpot_term_deposit_pipeline.py"
+[paths.pre.TPOT]
+periodic_checkpoint_folder = "models/tpot/pre/checkpoints/"
+base = "models/tpot/pre/"
+
+[paths.post.TPOT]
+periodic_checkpoint_folder = "models/tpot/post/checkpoints/"
+base = "models/tpot/post/"
 
 [database]
 host = 'localhost'
@@ -24,3 +37,50 @@ port = 5432
 user = 'your_username'
 password = 'your_password'
 database_name = 'your_database'
+
+[pycaret.setup]
+use_gpu=false
+session_id=123
+log_experiment=false
+experiment_name="predict-term_deposit-marketing-2020"
+fix_imbalance_method="smote_tomek"
+
+[settings.H2O]
+project_name = "term_deposit_prediction"
+max_models = 20
+stopping_metric = "logloss"
+export_checkpoints_dir = "models/H2O/checkpoints"
+nfolds = 5
+max_runtime_secs = 5000
+seed = 42
+verbosity = "warn"
+# balance_classes = true
+
+# TPOT Classifier Configuration
+[TPOT.one]
+generations = 5
+population_size = 20
+verbosity = 0
+use_dask = false
+cv = 5
+random_state = 42
+scoring = "precision"
+
+[TPOT.two]
+generations = 1
+population_size = 50
+verbosity = 2
+use_dask = false
+cv = 5
+random_state = 42
+scoring = "precision"
+
+[automl]
+task = "regression"
+log_file_name = "models/flaml/logs.log"
+n_jobs = -1
+estimator_list = "auto"
+time_budget = 600
+max_iter = 1000000
+sample = true
+ensemble = false

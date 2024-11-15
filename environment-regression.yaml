@@ -1,0 +1,22 @@
+name: td-regression
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pandas
+  - numpy
+  - matplotlib
+  - seaborn
+  - statsmodels
+  - scikit-learn
+  - tabulate
+  - imbalanced-learn
+  - fastparquet
+  - toml
+  - pip
+  - pip:
+    - plotly-express
+    - nbformat>=4.2.0
+    - mlflow
+    - hyperopt
+    - flaml[ray]
