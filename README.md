@@ -1,124 +1,132 @@
-# Term Deposit Marketing Campaign Analysis
+# **Personalized Discount Allocation Using Causal Inference and Machine Learning**
 
-This project develops a machine learning system to improve the effectiveness of a bank's marketing campaign by predicting the likelihood of customer subscription to term deposits. We explore various libraries and modeling approaches to identify customers most likely to subscribe, helping the bank optimize its marketing strategy.
+## **Overview**
+This project tackles a critical challenge for an e-commerce company: optimizing discount strategies to maximize profits. By leveraging causal inference and machine learning, we identified specific customer segments that respond positively to discounts, enabling the company to allocate discounts strategically and improve profitability.
 
----
-
-## **Table of Contents**
-- [Project Overview](#project-overview)
-- [Key Components](#key-components)
-- [Environment Setup](#environment-setup)
-- [Running the Project](#running-the-project)
-- [Results](#results)
-- [Documentation Links](#documentation-links)
+### **Key Takeaways**
+- **Insights**: Discounts decrease profits on average, but certain customer segments show a positive response.
+- **Strategic Segments Identified**: Younger customers with higher predicted sales and specific regional profiles are more receptive to discounts.
+- **Impact**: Implementing a targeted discount strategy can enhance profits by focusing on high-impact customer segments.
+- **Next Steps**: Deploy personalized discounts to identified segments and continuously refine the strategy based on observed results.
 
 ---
 
-## **Project Overview**
+## **Business Problem**
+The company wants to understand if discounts can be profitable and, if so, identify which customers to target. The profitability equation is:
+$$
+Profits_i = Sales_i \times 0.05 - Discount_i
+$$
+The challenge is to move beyond average effects and uncover customer-level insights for personalized discounting.
 
-The goal of this project is to build an adaptive, interpretable model that can analyze call center data and provide insights to enhance the success rate of a term deposit marketing campaign. We approach the project in multiple stages, from exploratory analysis and causal inference to pre- and post-call classification modeling and customer segmentation.
-
-**Key Objectives:**
-- **Primary Goal**: Accurately predict term deposit subscriptions, prioritizing recall for class 1 (subscribers).
-- **Secondary Goals**:
-    - Understand feature importance and causal relationships between variables.
-    - Develop pre- and post-call classification models to optimize marketing efforts.
-    - Segment customers for targeted marketing strategies.
-
----
-
-## **Key Components**
-
-### **1. Exploratory Data Analysis (EDA)**
-Initial data exploration and visualization to understand feature distributions and detect patterns.
-
-### **2. Call Prediction Modeling**
-Predict the number of calls required for a customer to subscribe, using regression to explore feature engineering options.
-
-### **3. Causal Analysis**
-Identify interrelationships between variables using causal inference techniques to understand factors influencing subscriptions.
-
-### **4. Pre-Call Modeling**
-Classification model to prioritize customers before contact, helping to optimize marketing efforts.
-
-### **5. Post-Call Prediction**
-Classification model that uses additional customer information gathered post-contact to refine subscription likelihood predictions.
-
-### **6. Customer Segmentation**
-Clustering analysis to identify distinct customer groups for targeted marketing strategies.
+### **Why It Matters**
+- **Cost Efficiency**: Reduces wasteful spending on unprofitable discounts.
+- **Customer Engagement**: Increases satisfaction by offering relevant incentives.
+- **Competitive Advantage**: Enhances profitability through data-driven personalization.
 
 ---
 
-## **Environment Setup**
+## **Findings and Insights**
 
-To avoid dependency conflicts, we use separate Conda environments for different stages of the project. The required environments and their corresponding files are:
+### 1. **Overall Impact of Discounts**
+**Visual**: Scatter plot showing the relationship between discount and profits for randomized vs. non-randomized data.
 
-- **Pre-Call Modeling**: `environment-pre.yaml`
-- **Post-Call Modeling**: `environment-post.yaml`
-- **Causal Analysis**: `environment-causal.yaml`
-- **Clustering**: `environment-cluster.yaml`
+- **Non-Randomized Data**: Suggested a misleading positive relationship due to confounding factors.
+- **Randomized Data**: Revealed that, on average, increasing discounts reduces profits.
 
-### **Setting Up an Environment**
-
-1. **Create the environment**:
-   ```bash
-   conda env create -f <environment-file>.yaml
-   ```
-   Replace `<environment-file>` with the appropriate environment file (e.g., `environment-pre.yaml`).
-
-2. **Activate the environment**:
-   ```bash
-   conda activate <environment-name>
-   ```
-
-3. **Add Jupyter Kernel for Each Environment** (optional):
-   ```bash
-   python -m ipykernel install --user --name=<environment-name>
-   ```
+**Key Insight**: Discounts are not universally beneficial and should not be offered indiscriminately.
 
 ---
 
-## **Running the Project**
+### 2. **Identification of High-Impact Customer Segments**
+**Visual**: Heterogeneous Effects Plot highlighting high-TE (treatment effect) customer clusters.
 
-1. **Clone the Repository**:
-   ```bash
-   git clone <repository-url>
-   cd <repository-name>
-   ```
+Through advanced modeling, we identified specific customer segments that respond positively to discounts:
 
-2. **Data Preparation**: Ensure that raw data files are placed in the `data/raw/` directory. Interim and processed data will be generated in the `data/interim/` and `data/processed/` folders as you progress.
+- **Age Group**: Younger customers (below 35 years old) showed higher positive treatment effects.
+- **Predicted Sales**: Customers with higher predicted sales volumes are more likely to increase profits when given discounts.
+- **Geographic Regions**: Certain regions, represented by higher average sales in their state, responded better to discounts.
 
-3. **Run Notebooks**:
-   Open Jupyter Notebook or JupyterLab and select the corresponding environment kernel for each notebook.
-
-4. **Track Experiments**: MLflow and other tracking tools are used to log experiments. Check the `mlruns/` folder for details.
+**Key Insight**: Targeting discounts to younger customers with high predicted sales in specific regions maximizes profitability.
 
 ---
 
-## **Results**
+### 3. **Evaluating the Personalized Strategy**
+**Visual 1**: **Cumulative Elasticity Curve** demonstrating the model’s ability to prioritize high-TE customers.
 
-Results are provided for each analysis stage, including key insights and performance metrics. For a detailed breakdown, see the [Results Documentation](results.md).
+- The curve shows that focusing on the top 60% of customers, sorted by predicted treatment effects, results in a positive elasticity, indicating increased profits from discounts.
+- Customers below the 40th percentile exhibited negative treatment effects, suggesting discounts to them would decrease profits.
 
-### **Summary of Key Results**:
-- **EDA**: Initial insights on feature distributions and customer demographics.
-- **Call Prediction**: Metrics on the regression model predicting the number of calls.
-- **Causal Analysis**: Identified causal relationships that impact customer subscriptions.
-- **Pre-Call Model**: Precision-focused model for prioritizing likely subscribers.
-- **Post-Call Model**: Improved recall for subscribers after gathering additional customer information.
-- **Clustering**: Segmentation of customer groups for tailored marketing strategies.
+**Visual 2**: **Cumulative Gain Curve** compares the effectiveness of the treatment effect model with that of using customer age as a heuristic.
 
----
+- The model outperforms age-based targeting by better distinguishing customers who will generate incremental profits when offered discounts.
 
-## **Documentation Links**
-
-- [Starter Guide](starter.md): Quick-start setup and project structure.
-- [Project Overview](overview.md): Detailed goals, data, and metric explanations.
-- [Results Documentation](results.md): Comprehensive results for each analysis phase.
-
-For further technical details, see the [Appendix](appendix.md) for troubleshooting, parameter settings, and advanced configurations.
+**Key Insight**: The model-based approach significantly improves the identification of profitable customers over simple heuristics.
 
 ---
 
-## **Contributing**
+## **Actionable Recommendations**
 
-For questions or suggestions, please reach out to [project-support@example.com](mailto:project-support@example.com). Contributions are welcome via pull requests.
+1. **Implement a Targeted Discount Strategy**:
+   - **Focus on Customers**:
+     - **Age**: Under 35 years old.
+     - **Predicted Sales**: Upper 50th percentile of sales predictions.
+     - **Regions**: States with historically higher average sales.
+   - **Discount Allocation**:
+     - Offer discounts primarily to customers who fall into the high-TE segments identified.
+     - Refrain from offering discounts to customers with predicted negative treatment effects.
+
+2. **Monitor and Optimize**:
+   - **Performance Tracking**:
+     - Measure the impact on profits and customer engagement.
+     - Use A/B testing to validate the effectiveness of the targeted strategy.
+   - **Continuous Refinement**:
+     - Update the model with new data to improve predictions.
+     - Incorporate additional customer features such as purchase frequency, product categories, and engagement metrics.
+
+3. **Explore Complementary Strategies**:
+   - **Non-Monetary Incentives**:
+     - For customers with negative treatment effects, consider loyalty programs or personalized recommendations.
+   - **Cross-Selling and Upselling**:
+     - Leverage insights to promote complementary products to high-TE customers.
+
+---
+
+## **Impact**
+
+By implementing these recommendations:
+
+- **Profit Increase**: The company can expect an increase in profits by concentrating discounts where they are most effective.
+- **Cost Reduction**: Eliminating unprofitable discounts reduces unnecessary expenditure.
+- **Customer Satisfaction**: Personalized offers enhance the shopping experience, potentially increasing customer loyalty.
+
+---
+
+## **Methodology Overview**
+
+### **Data Analysis and Modeling**
+
+- **Data Sources**: Combined randomized and non-randomized customer data.
+- **Feature Engineering**: Encoded customer states numerically based on average sales, categorized customers into sales prediction bins.
+- **Debiasing Techniques**: Applied the Frisch-Waugh-Lovell (FWL) theorem and double/debiased machine learning to control for confounding variables.
+- **Machine Learning Model**: Used LightGBM regressor to estimate the Conditional Average Treatment Effects (CATE) at the customer level.
+
+### **Validation**
+
+- **Cumulative Elasticity and Gain Curves**: Assessed the model's ability to identify customers who would positively respond to discounts.
+- **Comparison with Baseline**: Demonstrated that the model outperforms simple heuristics like customer age.
+
+---
+
+## **Visual Aids**
+
+1. **Scatter Plot**: Shows the true causal relationship between discounts and profits using randomized data.
+2. **Heterogeneous Effects Plot**: Illustrates the distribution of high and low treatment effects among customers.
+3. **Cumulative Elasticity Curve**: Visualizes the positive impact of targeting high-TE customers.
+4. **Cumulative Gain Curve**: Highlights the increased profits from the model-based strategy compared to the baseline.
+- **Scalability**: Expand the personalized approach to other promotional strategies.
+
+---
+
+This enhanced README provides specific insights into the customer segments that are strategic for the company's discounting strategy, based on the analysis conducted. It emphasizes actionable recommendations and the potential impact on the business, aligning with your goal to communicate effectively with executives and stakeholders.
+
+Let me know if there's anything else you'd like to add or modify!
