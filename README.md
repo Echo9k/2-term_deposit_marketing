@@ -111,18 +111,5 @@ By implementing these recommendations:
 - **Feature Engineering**: Encoded customer states numerically based on average sales, categorized customers into sales prediction bins.
 - **Debiasing Techniques**: Applied the Frisch-Waugh-Lovell (FWL) theorem and double/debiased machine learning to control for confounding variables.
 - **Machine Learning Model**: Used LightGBM regressor to estimate the Conditional Average Treatment Effects (CATE) at the customer level.
-
-### **Validation**
-
-- **Cumulative Elasticity and Gain Curves**: Assessed the model's ability to identify customers who would positively respond to discounts.
-- **Comparison with Baseline**: Demonstrated that the model outperforms simple heuristics like customer age.
-
----
-
-## **Visual Aids**
-
-1. **Scatter Plot**: Shows the true causal relationship between discounts and profits using randomized data.
-2. **Heterogeneous Effects Plot**: Illustrates the distribution of high and low treatment effects among customers.
-3. **Cumulative Elasticity Curve**: Visualizes the positive impact of targeting high-TE customers.
-4. **Cumulative Gain Curve**: Highlights the increased profits from the model-based strategy compared to the baseline.
+l-based strategy compared to the baseline.
 - **Scalability**: Expand the personalized approach to other promotional strategies.
