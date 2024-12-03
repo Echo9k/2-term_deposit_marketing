@@ -13,9 +13,11 @@ This project tackles a critical challenge for an e-commerce company: optimizing 
 
 ## **Business Problem**
 The company wants to understand if discounts can be profitable and, if so, identify which customers to target. The profitability equation is:
+
 $$
 Profits_i = Sales_i \times 0.05 - Discount_i
 $$
+
 The challenge is to move beyond average effects and uncover customer-level insights for personalized discounting.
 
 ### **Why It Matters**
@@ -58,7 +60,7 @@ Through advanced modeling, we identified specific customer segments that respond
 
 **Visual 2**: **Cumulative Gain Curve** compares the effectiveness of the treatment effect model with that of using customer age as a heuristic.
 
-- The model outperforms age-based targeting by better distinguishing customers who will generate incremental profits when offered discounts.
+- The model outperforms age-based targeting by better-distinguishing customers who will generate incremental profits when offered discounts.
 
 **Key Insight**: The model-based approach significantly improves the identification of profitable customers over simple heuristics.
 
