@@ -124,9 +124,3 @@ By implementing these recommendations:
 3. **Cumulative Elasticity Curve**: Visualizes the positive impact of targeting high-TE customers.
 4. **Cumulative Gain Curve**: Highlights the increased profits from the model-based strategy compared to the baseline.
 - **Scalability**: Expand the personalized approach to other promotional strategies.
-
----
-
-This enhanced README provides specific insights into the customer segments that are strategic for the company's discounting strategy, based on the analysis conducted. It emphasizes actionable recommendations and the potential impact on the business, aligning with your goal to communicate effectively with executives and stakeholders.
-
-Let me know if there's anything else you'd like to add or modify!
